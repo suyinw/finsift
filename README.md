@@ -1,4 +1,4 @@
-# FinSift — Company News Scorecard
+# FinSift — Company News Scorecard with Jev
 
 FinSift is a local equity-research prototype that turns recent company
 headlines into a transparent financial-potential scorecard.
