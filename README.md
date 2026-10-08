@@ -13,6 +13,8 @@ estimates, or full article text.
 
 ## Video demo
 
+[![FinSift video demo preview](docs/assets/finsift-demo-preview.jpg)](docs/assets/finsift-demo.mp4)
+
 [Watch the FinSift demo](docs/assets/finsift-demo.mp4) — 2 minutes 27 seconds
 
 ## Quick start with mocked Jev
