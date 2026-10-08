@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="FinSift turns company news into clear financial signals." />
+    <title>FinSift — Company News Scorecard</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <div class="grain"></div>
+    <header class="topbar">
+      <a class="brand" href="/">
+        <span class="brand-icon">F</span>
+        <span><strong>FinSift</strong><small>Company signal desk</small></span>
+      </a>
+      <div class="status-chip" id="status-chip">
+        <i></i><span id="status-label">Connecting</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <p class="eyebrow">DECISION MODEL · EQUITY RESEARCH PROTOTYPE</p>
+        <h1>Read the week.<br />Frame the signal.</h1>
+        <div class="hero-bottom">
+          <p>
+            Review up to ten company headlines from the previous seven days and turn
+            them into a transparent, typed research scorecard.
+          </p>
+          <p class="disclaimer">
+            Headline-derived research aid only. This does not measure complete financial
+            health or provide investment advice.
+          </p>
+        </div>
+      </section>
+
+      <section class="search-card">
+        <form id="analysis-form">
+          <label>
+            <span>Company</span>
+            <input id="company" value="Amazon.com" maxlength="100" required />
+          </label>
+          <label class="ticker-field">
+            <span>Ticker</span>
+            <input id="ticker" value="AMZN" maxlength="12" />
+          </label>
+          <label>
+            <span>Decision model</span>
+            <select id="model-selection">
+              <option value="all" selected>Compare all three</option>
+              <option value="both">Compare Jev + Strands</option>
+              <option value="jev">Jev only</option>
+              <option value="strands">Strands Decider only</option>
+              <option value="laya">Laya only</option>
+            </select>
+          </label>
+          <button id="analyze-button" type="submit">
+            <span>Analyze last 7 days</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg>
+          </button>
+        </form>
+        <div class="search-meta">
+          <label class="toggle">
+            <input id="mock-news" type="checkbox" />
+            <span></span>
+            Use fictional news
+          </label>
+          <p>Live source: Google News RSS · maximum 10 headlines</p>
+        </div>
+        <p class="error" id="error" role="alert"></p>
+      </section>
+
+      <section class="dashboard hidden" id="dashboard">
+        <div class="dashboard-head">
+          <div>
+            <p class="eyebrow">WEEKLY SCORECARD</p>
+            <h2><span id="company-name"></span> <small id="ticker-name"></small></h2>
+          </div>
+          <div class="coverage-meta">
+            <span>Previous seven days</span>
+            <span id="coverage-count"></span>
+          </div>
+        </div>
+
+        <div class="comparison-grid" id="model-results"></div>
+
+        <section class="latency-section">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">PERFORMANCE</p>
+              <h2>Latency breakdown</h2>
+            </div>
+            <p>Submit to rendered result</p>
+          </div>
+          <div class="latency-groups" id="latency-groups"></div>
+        </section>
+
+        <section class="news-section">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">SOURCE MATERIAL</p>
+              <h2>Shared headlines evaluated</h2>
+            </div>
+            <p id="source-mode"></p>
+          </div>
+          <div class="article-list" id="article-list"></div>
+        </section>
+      </section>
+
+      <section class="empty-dashboard" id="empty-dashboard">
+        <div class="scan-mark"><i></i></div>
+        <div>
+          <p class="eyebrow">READY FOR REVIEW</p>
+          <h2>Start with a company, or switch on fictional news for a stable demo.</h2>
+          <p>
+            All selected models receive the same headlines, publisher names,
+            questions, and scoring policy so their typed outputs can be compared.
+          </p>
+        </div>
+      </section>
+
+      <section class="method">
+        <p class="eyebrow">HOW THE SCORE IS BUILT</p>
+        <div class="method-grid">
+          <article><span>01</span><h3>Collect</h3><p>Retrieve and deduplicate up to ten headlines published within seven days.</p></article>
+          <article><span>02</span><h3>Judge</h3><p>Jev, Strands Decider, and Laya return the same typed momentum, financial, execution, risk, and coverage judgments.</p></article>
+          <article><span>03</span><h3>Apply policy</h3><p>Inspectable Python weights the judgments and assigns a research posture.</p></article>
+        </div>
+        <div class="model-questions">
+          <div class="model-questions-head">
+            <p class="eyebrow">QUESTIONS SENT TO EVERY MODEL</p>
+            <p>Each model evaluates the same five factors using the same headlines.</p>
+          </div>
+          <ol>
+            <li>
+              <span>Choice</span>
+              <p>Based only on the supplied headlines, classify the direction of company operating and business momentum during this news window.</p>
+            </li>
+            <li>
+              <span>Choice</span>
+              <p>Classify the overall financial signal contained explicitly in the headlines.</p>
+            </li>
+            <li>
+              <span>Score</span>
+              <p>Score the operational execution signal expressed by the supplied headlines.</p>
+            </li>
+            <li>
+              <span>Noul</span>
+              <p>Do the headlines identify a material legal, regulatory, operational, governance, or balance-sheet risk?</p>
+            </li>
+            <li>
+              <span>Noul</span>
+              <p>Is this headline set too thin, repetitive, promotional, or tangential to support a useful company-health research signal?</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>FinSift / local prototype</span>
+      <span>News signals may be incomplete, duplicated, biased, or inaccurate</span>
+    </footer>
+  </body>
+</html>
